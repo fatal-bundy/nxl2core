@@ -105,8 +105,34 @@ __declspec (dllexport) int NxL2GetGameID()
 	return 310300;
 }
 
-__declspec (dllexport) int NxL2GetGameSettingA(LPCSTR a1, int a2)
+__declspec (dllexport) int NxL2GetGameSettingA(LPCSTR a1, DWORD64 a2)
 {
+	if (!strcmp(a1, "SVVolume"))
+	{
+		*(DWORD64 *)a2 = 10;
+		return 10;
+	}
+	if (!strcmp(a1, "SEVolume"))
+	{
+		*(DWORD64 *)a2 = 10;
+		return 10;
+	}
+	if (!strcmp(a1, "BGMVolume"))
+	{
+		*(DWORD64 *)a2 = 10;
+		return 10;
+	}
+	if (!strcmp(a1, "CVVolume"))
+	{
+		*(DWORD64 *)a2 = 10;
+		return 10;
+	}
+	if (!strcmp(a1, "MasterVolume"))
+	{
+		*(DWORD64 *)a2 = 100;
+		return 100;
+	}
+
 	/*if (!strcmp(a1, "CloseTimeAnnounceEnable"))
 	{
 		*(int *)a2 = 1;
@@ -255,6 +281,7 @@ __declspec (dllexport) signed int NxL2RequestRFID()
 
 __declspec (dllexport) int NxL2SetGameSettingA(LPCSTR a1, int a2)
 {
+
 	return SetGameSettingA(a1, a2);
 }
 
