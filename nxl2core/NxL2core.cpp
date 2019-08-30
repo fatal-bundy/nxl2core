@@ -222,24 +222,35 @@ __declspec (dllexport) signed int NxL2GetRFIDResult()
 	return GetRFIDResult();
 }
 
-__declspec (dllexport) int NxL2GetSystemSettingA(LPCSTR a1, int a2)
+__declspec (dllexport) int NxL2GetSystemSettingA(LPCSTR a1, DWORD64 a2)
 {
 	if (!strcmp(a1, "Resolution"))
 	{
-		a2 = 1;
+		*(DWORD64 *)a2 = 2;
 		return 1;
 	}
 	if (!strcmp(a1, "CoinCreditCoin"))
 	{
-		a2 = 1;
+		a2 = 0;
 		return 1;
 	}
 	if (!strcmp(a1, "CoinCreditCredit"))
 	{
-		a2 = 1;
+		a2 = 0;
 		return 1;
 	}
-	a2 = 1;
+	if (!strcmp(a1, "Language"))
+	{
+		//ex-layer 0=JAP 1=ENG
+		*(DWORD64 *)a2 = 1;
+		return 1;
+	}
+	if (!strcmp(a1, "StoreMatchGroup"))
+	{
+		*(DWORD64 *)a2 = 0;
+		return 0;
+	}
+	a2 = 0;
 	return 1;
 }
 
